@@ -229,6 +229,50 @@ receipt-reading service.
 
 ---
 
+## Onboarding moodboard: what good finance apps do first
+
+> **Research, not built yet.** The app has no onboarding today; it opens
+> straight to Home.
+
+![Moodboard header: Get to the first win, fast.](docs/design/onboarding/0-header.png)
+
+A moodboard in Paper (page **"Moodboard — Onboarding"**) collects 15 real
+onboarding screens found on Mobbin and groups them into six recurring design
+moves. The screenshots belong to those apps, so they stay in the Paper file and
+aren't copied into this public repo; the links below open the original flows on
+Mobbin.
+
+| # | Design move | The key element | Seen in |
+|---|-------------|-----------------|---------|
+| 1 | **First impression** | One big visual, one line of value, sign-up buttons within thumb reach. Apple sign-in first, "Log in" as a quiet link, Demo Mode to look before committing. | [Copilot Money](https://mobbin.com/flows/bec90a3f-1c1b-490a-b27d-8445cc6e62a7), [Rocket Money](https://mobbin.com/flows/fed2772b-6edd-432f-b195-0691f2d84d04) |
+| 2 | **Ask what they came for** | "Where would you like to start?" as icon rows or cards, always with "I'm not sure" and Skip. The answer decides what the app shows first. | [Origin](https://mobbin.com/flows/c3a6fc47-bd8c-4587-bd6c-6e26103d7763), [Buddy](https://mobbin.com/flows/eecfa79b-3250-429f-9432-de16e4d34552), Rocket Money |
+| 3 | **Chips, progress, one question** | Tap, don't type: chips pre-picked from real behavior, a top progress bar, a button that counts down ("Select 4 more"), one big question per screen. | Copilot Money, [Mindvalley](https://mobbin.com/flows/05c98b08-418d-4892-afe4-bdefdafb627e), Origin |
+| 4 | **Earn the permission** | Explain the payoff before the system prompt: what the camera is for, a real sample notification with its toggle, a reason to say yes. | [Expensify](https://mobbin.com/flows/96eca170-e2c5-41da-be39-bc51510e7837), Copilot Money, Buddy |
+| 5 | **Show the payoff** | Reflect back what you learned ("Let's make sure these numbers are correct", then "Tap to confirm"); a short "building your setup" beat with trust signals. | Copilot Money, [Deepstash](https://mobbin.com/flows/b0aa66bf-1028-4de9-890e-d9b46265970d) |
+| 6 | **Finish setup inside the app** | A short wizard, then a "1/4 · Finish setting up" card on Home. Extras like reminders are asked later, in context, with "Maybe later". | Origin |
+
+### The onboarding kit and a first run for this app
+
+The recurring pieces, redrawn in this app's yellow-and-black style, next to a
+proposed six-step first run. Each step maps to the design move with the same
+number.
+
+![Onboarding kit and proposed first run](docs/design/onboarding/1-kit-and-first-run.png)
+
+1. **Welcome:** "Snap a receipt. We'll do the rest." Apple first, plus "Try it
+   with a sample receipt."
+2. **What's it for?** Work · Personal · Both, which sets defaults like export and
+   reminders.
+3. **Pick categories** as chips, pre-picked from step 2, with a progress bar.
+4. **Camera, explained first:** "We read receipts so you never type them," then
+   the system prompt.
+5. **First scan is the payoff:** a real receipt (or the Luna Ramen sample) lands
+   on Review with ✓ fields.
+6. **Home, with "Finish setting up 1/3":** reminders, card, first export. No
+   20-screen wizard.
+
+---
+
 ## The agent and its tools
 
 This project was built by **a single Claude Code agent** working in the terminal.
@@ -238,7 +282,7 @@ a tool connection:
 | Tool | Connected via | Used for |
 |------|---------------|----------|
 | **Paper** | Paper MCP server (`paper-desktop` plugin) | Reading the canvas, drawing artboards, screenshots, pulling JSX and exact styles, exporting the design images |
-| **Mobbin** | Mobbin MCP server | Searching real app screens and flows for the v2 research |
+| **Mobbin** | Mobbin MCP server | Searching real app screens and flows for the v2 research and the onboarding moodboard |
 | **Browser** | Playwright MCP server | Opening the running app, clicking through the flow, screenshots for comparison |
 | **Files & terminal** | Claude Code built-ins | Writing the React code, running `npm`, building |
 | **git + GitHub** | `git` and the GitHub CLI (`gh`) | Commits, creating this repo, pushing |
@@ -272,11 +316,13 @@ src/
 docs/design/
   v2/                 the six v2 boards + overview, exported from Paper
   wireframes/         principles board + grey-box wireframes W1–W5
+  onboarding/         moodboard header, onboarding kit + proposed first run
 ```
 
 ## Not built yet
 
 - The v2 design above: it exists in Paper and as images, not in code
+- Onboarding: the app opens straight to Home; the first run above is a proposal
 - Real camera access and a real receipt-reading service
 - Flash, payment method and "Edit expense" on the detail screen are placeholders
 - Accounts and syncing: expenses are stored only in this browser
