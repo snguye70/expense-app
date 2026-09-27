@@ -47,8 +47,10 @@ deposit), and the good versions share a few ideas. Each screen here applies one:
 - **Tokens** live in [`src/theme.css`](src/theme.css): `#FFD000` accent,
   `#111111` ink, `#6B6B6B` muted text, `#E8E8E8` rules, `#FFF4C2` flag, and
   Inter Tight for all UI type.
-- The sample receipt uses IBM Plex Mono for print and Caveat for the handwritten
-  tip, so the "we might have misread it" moment is visible on the paper itself.
+- The sample receipt is a photo generated with Paper's image tool (tutorial step B).
+  The app shows the whole photo in the camera, crops the receipt out of it for
+  the check and review screens, and crops just the handwritten tip line for the
+  tip sheet, so you compare against the actual pen marks.
 
 ---
 
@@ -91,19 +93,26 @@ What that looked like in practice:
 |---------|:-----:|:----:|
 | Expense detail, Add expense (manual) | ✅ | ✅ |
 | 1–5: Home → Camera → Check photo → Reading → Review | ✅ | ✅ |
-| 6–7: Edit sheet, Saved state | not yet | ✅ |
+| 6–7: Edit sheet, Saved state | ✅ | ✅ |
 
-Screens 6 and 7 were designed straight into code: Paper's free plan caps agent
-activity per week, and the limit was reached mid-flow. They follow the same system
-and can be brought back onto the canvas later.
+Screens 6 and 7 went the other direction: Paper's free plan caps agent activity
+per week and the limit was reached mid-flow, so they were designed straight into
+code first, then drawn back onto the canvas after upgrading to Paper Pro. The
+receipt photo made the same round trip: generated in Paper, pulled into the code,
+then placed into every flow board.
 
 ### Things we learned
 
 - Paper's free tier has a **weekly MCP limit**; big flows can hit it. Plan the
-  canvas work, or finish in code and sync back later.
+  canvas work, or finish in code and sync back later. Reading from the canvas
+  (like pulling the receipt photo out of Paper) still worked after the limit
+  blocked drawing.
 - Some CSS that works in browsers didn't apply on Paper nodes during this build
   (`transform: scale()` on a cloned element, negative margins for overlapping
-  avatars). Simple flex layouts were the reliable path.
+  avatars, `position: absolute` on a copied image layer, `right`/`bottom`
+  offsets). Simple flex layouts were the reliable path, and crops worked best as
+  a frame's own background image with a set size and offset, the same technique
+  the code uses.
 - In code, shared styles must load **before** screen styles
   ([`src/main.jsx`](src/main.jsx)), or they quietly override screen-specific rules.
 
@@ -143,7 +152,8 @@ src/
   scan/Reading.jsx    4: reading progress
   scan/Review.jsx     5: review with flagged tip
   scan/EditSheet.jsx  6: bottom sheet for editing any field
-  Receipt.jsx         the drawn sample receipt
+  ReceiptPhoto.jsx    the sample receipt photo: full camera view and crops
+  assets/             receipt-luna-ramen.jpg, generated in Paper
   AddExpense.jsx      manual entry with number keypad
   ExpenseDetail.jsx   a single saved expense
 ```

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { DEFAULT_CARD, formatDate, money, sampleReceipt } from '../data.js'
 import { BackIcon, ChevronIcon, ScanIcon } from '../icons.jsx'
 import EditSheet from './EditSheet.jsx'
+import { PhotoCrop, RECEIPT_BOX } from '../ReceiptPhoto.jsx'
 import './scan.css'
 
 const FIELDS = {
@@ -62,16 +63,7 @@ export default function Review({ onBack, onSave }) {
               <span className="amount-value">{money(total)}</span>
             </p>
           </div>
-          <span className="receipt-thumb" aria-label="Receipt photo">
-            <span className="thumb-line thumb-line--title" />
-            <span className="thumb-line" />
-            <span className="thumb-line" />
-            <span className="thumb-line thumb-line--short" />
-            <span className="thumb-line" />
-            <span className="thumb-line thumb-line--mid" />
-            <span className="thumb-ink thumb-ink--tip" />
-            <span className="thumb-ink" />
-          </span>
+          <PhotoCrop box={RECEIPT_BOX} width={60} className="receipt-thumb" label="Receipt photo" />
         </div>
       </header>
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Receipt from '../Receipt.jsx'
+import { CameraView, PhotoCrop, RECEIPT_BOX } from '../ReceiptPhoto.jsx'
 import { CheckIcon, CloseIcon, FlashIcon, ImageIcon } from '../icons.jsx'
 import './scan.css'
 
@@ -32,14 +32,7 @@ export default function Camera({ onClose, onCapture }) {
       </nav>
 
       <div className="viewfinder">
-        <Receipt tilted />
-        {found && (
-          <div className="detection-frame" aria-hidden="true">
-            <svg width="282" height="396" viewBox="0 0 282 396">
-              <path d="M2 34V2h32M248 2h32v32M280 362v32h-32M34 394H2v-32" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-        )}
+        <CameraView found={found} />
         <div className="viewfinder-hint" role="status">
           {found ? (
             <span className="hint hint--found"><span className="hint-dot" />{auto ? 'Receipt found — hold steady' : 'Receipt found — tap to snap'}</span>
@@ -79,7 +72,7 @@ export function CheckPhoto({ onClose, onRetake, onUse }) {
       </nav>
 
       <div className="viewfinder">
-        <Receipt />
+        <PhotoCrop box={RECEIPT_BOX} width={250} className="receipt-shot" label="Cropped receipt photo" />
         <div className="viewfinder-hint">
           <span className="hint hint--ok"><CheckIcon />Sharp · all 4 corners in view</span>
         </div>

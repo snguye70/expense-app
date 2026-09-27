@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Receipt from '../Receipt.jsx'
+import { PhotoCrop, RECEIPT_BOX } from '../ReceiptPhoto.jsx'
 import { formatDate, sampleReceipt } from '../data.js'
 import { CheckIcon, CloseIcon } from '../icons.jsx'
 import './scan.css'
@@ -35,7 +35,7 @@ export default function Reading({ onClose, onDone, onEnterManually }) {
 
       <div className="reading-preview">
         <div className="reading-panel">
-          <Receipt />
+          <PhotoCrop box={RECEIPT_BOX} width={250} className="receipt-shot" label="Receipt photo being read" />
           <div className="scan-line" aria-hidden="true" />
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { CATEGORIES, money } from '../data.js'
 import { CheckIcon } from '../icons.jsx'
+import { PhotoCrop, TIP_BOX } from '../ReceiptPhoto.jsx'
 import './scan.css'
 
 const TIP_PERCENTS = [18, 20, 22]
@@ -45,10 +46,7 @@ export default function EditSheet({ field, value, tipBase, readValue, onCancel, 
         {field.kind === 'tip' && (
           <div className="source-crop">
             <span className="source-crop-label">On your receipt</span>
-            <span className="source-crop-paper">
-              <span className="source-crop-tip">TIP</span>
-              <span className="handwriting source-crop-value">{money(readValue)}</span>
-            </span>
+            <PhotoCrop box={TIP_BOX} width={342} className="source-crop-photo" label={`Tip line on your receipt, read as ${money(readValue)}`} />
           </div>
         )}
 
