@@ -1,0 +1,112 @@
+.receipt {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 250px;
+  padding: 20px 18px 22px;
+  background: #faf9f5;
+  color: #1c1c1c;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.receipt--tilted {
+  width: 232px;
+  transform: rotate(-3deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+}
+
+.receipt-store {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  color: #444444;
+  font-size: 9px;
+  line-height: 12px;
+  white-space: pre;
+}
+
+.receipt-store strong {
+  color: #1c1c1c;
+  font-size: 15px;
+  line-height: 18px;
+  letter-spacing: 0.1em;
+}
+
+.receipt-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 10px;
+  border-top: 1px dashed #9a9a9a;
+}
+
+.receipt-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.receipt-line--bold {
+  font-weight: 700;
+}
+
+.receipt-handwritten {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.receipt-written-line {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 22px;
+  border-bottom: 1px solid #9a9a9a;
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.receipt-written-line > span:first-child {
+  padding-bottom: 2px;
+}
+
+.receipt-written-line--total {
+  height: 24px;
+  font-weight: 700;
+}
+
+.handwriting {
+  color: #23338c;
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 22px;
+  transform: rotate(-4deg);
+}
+
+.receipt-written-line--total .handwriting {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+  transform: rotate(-3deg);
+}
+
+.receipt-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding-top: 8px;
+  color: #444444;
+  font-size: 9px;
+  line-height: 12px;
+  white-space: pre;
+}
+
+.receipt-thanks {
+  letter-spacing: 0.1em;
+}

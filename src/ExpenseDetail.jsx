@@ -1,51 +1,24 @@
+import { DEFAULT_CARD, formatDate, money } from './data.js'
+import { BackIcon, ChevronIcon, MoreIcon } from './icons.jsx'
 import './ExpenseDetail.css'
-
-function BackIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
-
-function MoreIcon() {
-  return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <circle cx="5" cy="12" r="1.8" />
-      <circle cx="12" cy="12" r="1.8" />
-      <circle cx="19" cy="12" r="1.8" />
-    </svg>
-  )
-}
-
-function ChevronIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  )
-}
 
 function DetailRow({ label, children }) {
   return (
-    <div className="detail-row">
-      <span className="detail-label">{label}</span>
-      <div className="detail-value">{children}</div>
+    <div className="row detail-row">
+      <span className="row-label">{label}</span>
+      <div className="row-value">{children}</div>
     </div>
   )
 }
 
-const money = (n) => n.toFixed(2)
-
-export default function ExpenseDetail({ expense }) {
-  const { amount, merchant, note, date, category, paidWith, splitWith, hasReceipt, loggedBy, report } = expense
-  const share = amount / splitWith.length
+export default function ExpenseDetail({ expense, onBack, onEdit }) {
+  const { amount, merchant, note, date, category, paidWith = DEFAULT_CARD, splitWith = [], hasReceipt } = expense
 
   return (
-    <main className="expense">
+    <main className="screen">
       <header className="hero">
         <nav className="nav">
-          <button className="icon-button" aria-label="Back"><BackIcon /></button>
+          <button className="icon-button" aria-label="Back" onClick={onBack}><BackIcon /></button>
           <span className="nav-title">Expense</span>
           <button className="icon-button" aria-label="More options"><MoreIcon /></button>
         </nav>
@@ -57,7 +30,7 @@ export default function ExpenseDetail({ expense }) {
           </p>
           <div>
             <h1 className="merchant">{merchant}</h1>
-            <p className="meta">{note} · {date}</p>
+            <p className="meta">{note ? `${note} · ${formatDate(date)}` : formatDate(date)}</p>
           </div>
         </div>
       </header>
@@ -69,22 +42,28 @@ export default function ExpenseDetail({ expense }) {
         </DetailRow>
         <DetailRow label="Paid with">{paidWith}</DetailRow>
         <DetailRow label="Split">
-          <span className="avatars">
-            {splitWith.map((person) => (
-              <span key={person.initials} className={`avatar avatar--${person.tone}`}>{person.initials}</span>
-            ))}
-          </span>
-          ${money(share)} each
+          {splitWith.length > 1 ? (
+            <>
+              <span className="avatars">
+                {splitWith.map((person) => (
+                  <span key={person.initials} className={`avatar avatar--${person.tone}`}>{person.initials}</span>
+                ))}
+              </span>
+              ${money(amount / splitWith.length)} each
+            </>
+          ) : (
+            'Just you'
+          )}
         </DetailRow>
         <DetailRow label="Receipt">
-          {hasReceipt ? 'Attached' : 'None'}
+          {hasReceipt ? 'Attached' : 'Add receipt'}
           <ChevronIcon />
         </DetailRow>
       </section>
 
       <footer className="footer">
-        <button className="primary-button">Edit expense</button>
-        <p className="footnote">Logged by {loggedBy} · synced to {report}</p>
+        <button className="primary-button" onClick={onEdit}>Edit expense</button>
+        <p className="footnote">Logged by you · synced to Q3 Travel &amp; Meals</p>
       </footer>
     </main>
   )

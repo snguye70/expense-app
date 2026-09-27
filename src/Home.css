@@ -1,0 +1,245 @@
+/* Values come from the "Flow 1 — Expenses (home)" artboard in Paper. */
+.home-hero {
+  padding-bottom: 28px;
+}
+
+.home-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+  padding: 8px 24px 0;
+}
+
+.home-title {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 34px;
+  letter-spacing: -0.02em;
+}
+
+.home-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  background: var(--color-ink);
+  color: var(--color-ground);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.home-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 28px 24px 0;
+}
+
+.home-amount .amount-currency {
+  padding-top: 6px;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.home-amount .amount-value {
+  font-size: 64px;
+  line-height: 64px;
+  letter-spacing: -0.04em;
+}
+
+.home-meta {
+  padding-top: 4px;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.latest {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 24px 0;
+}
+
+.latest-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
+
+.text-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-ink);
+  font: 600 14px/18px var(--font-sans);
+  cursor: pointer;
+}
+
+.expense-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.expense-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  height: 68px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-rule);
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.expense-row--new {
+  width: calc(100% + 24px);
+  margin: 0 -12px;
+  padding: 0 12px;
+  border-radius: 14px;
+  border-bottom-color: transparent;
+  background: var(--color-flag);
+  animation: settle 3s ease-out 1.5s forwards;
+}
+
+@keyframes settle {
+  to {
+    background: transparent;
+    border-radius: 0;
+    border-bottom-color: var(--color-rule);
+  }
+}
+
+.expense-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--color-key);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.expense-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.expense-merchant {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.expense-sub {
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.expense-amount {
+  flex-shrink: 0;
+  width: 96px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: right;
+}
+
+.home-actions {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 24px 24px 34px;
+  background: linear-gradient(transparent, var(--color-ground) 24px);
+}
+
+.scan-button {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.round-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 28px;
+  background: var(--color-ground);
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.toast {
+  position: absolute;
+  top: 58px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 8px 0 14px;
+  border-radius: 16px;
+  background: var(--color-ink);
+  color: var(--color-ground);
+  box-shadow: 0 10px 30px rgba(17, 17, 17, 0.25);
+  animation: drop-in 0.3s ease-out;
+}
+
+@keyframes drop-in {
+  from { opacity: 0; transform: translateY(-12px); }
+}
+
+.toast-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+
+.toast-text {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.toast-undo {
+  height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  background: none;
+  color: var(--color-accent);
+  font: 600 15px/18px var(--font-sans);
+  cursor: pointer;
+}

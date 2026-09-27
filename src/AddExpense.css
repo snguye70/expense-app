@@ -1,0 +1,102 @@
+/* Values come straight from the "Expense — Add" artboard in Paper. */
+.add-hero {
+  padding-bottom: 28px;
+}
+
+.amount-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 24px 0;
+}
+
+.amount-empty {
+  opacity: 0.25;
+}
+
+.cursor {
+  align-self: center;
+  flex-shrink: 0;
+  width: 4px;
+  height: 76px;
+  border-radius: 2px;
+  background: var(--color-ink);
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 24px 0;
+}
+
+.field {
+  height: 56px;
+}
+
+.merchant-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  color: var(--color-ink);
+  font: 500 16px/20px var(--font-sans);
+  text-align: right;
+}
+
+.merchant-input::placeholder {
+  color: var(--color-muted);
+}
+
+.chips {
+  justify-content: flex-start;
+  gap: 8px;
+  height: 60px;
+}
+
+.add-bottom {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 0 16px 34px;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--color-key);
+  color: var(--color-ink);
+  font: 500 24px/28px var(--font-sans);
+  cursor: pointer;
+}
+
+.key:active {
+  background: var(--color-rule);
+}
+
+.key--dot {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.save-button {
+  align-self: center;
+  width: 342px;
+}
